@@ -38,7 +38,15 @@ export default function Login({ onLogin }) {
     <div className="login">
       <aside className="login-side">
         <div className="brand">
-          <span className="brand-mark" aria-hidden="true">SP</span>
+          <span className="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <polygon points="16,7 4,13 16,19 28,13" fill="white" opacity="0.95"/>
+              <polygon points="16,19 4,13 4,13 16,22" fill="white" opacity="0.4"/>
+              <path d="M9 15.5 V22 Q16 25.5 23 22 V15.5" fill="white" opacity="0.85"/>
+              <line x1="28" y1="13" x2="28" y2="20" stroke="white" strokeWidth="1.5" strokeLinecap="round" opacity="0.7"/>
+              <circle cx="28" cy="21" r="1.3" fill="white" opacity="0.7"/>
+            </svg>
+          </span>
           <div>
             <strong>Student Portal</strong>
           </div>

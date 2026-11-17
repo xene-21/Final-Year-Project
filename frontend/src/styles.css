@@ -240,15 +240,16 @@ input[type='checkbox'] { width: 15px; height: 15px; accent-color: var(--accent);
 .brand-mark {
   display: grid;
   place-items: center;
-  width: 32px;
-  height: 32px;
-  border-radius: 5px;
+  width: 34px;
+  height: 34px;
+  border-radius: 7px;
   background: var(--accent);
-  color: #fff;
-  font-weight: 700;
-  font-size: 0.78rem;
-  letter-spacing: 0.03em;
   flex: none;
+  overflow: hidden;
+}
+.brand-mark svg {
+  width: 26px;
+  height: 26px;
 }
 
 .nav { display: flex; flex-direction: column; gap: 1px; flex: 1; }
