@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { api, naira, useApi } from '../api';
 import { Notice, Stat, Status, Table } from '../components';
+import { getGreetingName } from '../names';
 
 export default function StudentPortal({ token, user, view, onNavigate }) {
   if (view === 'courses') return <Courses token={token} />;
@@ -22,12 +23,12 @@ function Overview({ token, user, onNavigate }) {
   const scores = (results.data || []).map((r) => r.score);
   const average = scores.length ? (scores.reduce((a, b) => a + b, 0) / scores.length).toFixed(1) : '—';
   const outstanding = (invoices.data || []).filter((i) => i.status === 'pending').reduce((sum, i) => sum + i.amount, 0);
-  const firstName = user.fullName.split(' ')[0];
+  const greetingName = getGreetingName(user);
 
   return (
     <div className="stack-lg">
       <section className="hero">
-        <h2>Hey {firstName} — here's where things stand.</h2>
+        <h2>Welcome back, {greetingName}.</h2>
         <p style={{ color: 'var(--ink-2)', marginTop: 4 }}>A quick look at your courses, scores and fees this semester.</p>
       </section>
 

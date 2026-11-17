@@ -72,10 +72,32 @@ async function inBatches(items, fn) {
   return out;
 }
 
+const FIRST_NAMES = [
+  'Chinedu', 'Amina', 'Tunde', 'David', 'Blessing', 'Femi', 'Grace', 'Ibrahim', 'Ngozi', 'Samuel',
+  'Folake', 'Kelechi', 'Fatima', 'Oluwaseun', 'Zainab', 'Emmanuel', 'Chioma', 'Farouk', 'Deborah', 'Ayomide',
+  'Joy', 'Mustapha', 'Faith', 'Chukwuma', 'Halima', 'Daniel', 'Ruth', 'Abubakar', 'Simi', 'Uche',
+  'Precious', 'Victor', 'Maryam', 'Adeola', 'Chidi', 'Damilola', 'Hauwa', 'Kayode', 'Temitope', 'Osas',
+  'Esther', 'Olamide', 'Peace', 'Bolaji', 'Rita', 'Chibuzor', 'Aisha', 'Idris', 'Gloria', 'Boluwatife',
+];
+
+const LAST_NAMES = [
+  'Okonkwo', 'Bello', 'Bakare', 'Adeleke', 'Eze', 'Oladipo', 'Danjuma', 'Musa', 'Obi', 'Alabi',
+  'Sani', 'Ajayi', 'Ibrahim', 'Okafor', 'Babatunde', 'Balogun', 'Garba', 'Nnamdi', 'Olawale', 'Mohammed',
+  'Nwosu', 'Adeniyi', 'Abiola', 'Yusuf', 'Ogunleye', 'Ojo', 'Lawal', 'Aliyu', 'Chukwu', 'Adeyemi',
+  'Adebayo', 'Okeke', 'Usman', 'Fashola', 'Kalu', 'Oluwole', 'Shehu', 'Falana', 'Ogundipe', 'Sanusi',
+];
+
+function getGenericStudentName(idx) {
+  const i = Math.max(1, Number(idx) || 1);
+  const first = FIRST_NAMES[(i - 1) % FIRST_NAMES.length];
+  const last = LAST_NAMES[(Math.floor((i - 1) / FIRST_NAMES.length) * 3 + (i * 7)) % LAST_NAMES.length];
+  return `${first} ${last}`;
+}
+
 async function main() {
   console.log(`Seeding ${BASE} with ${STUDENTS} students`);
-  const admin = await account({ fullName: 'Portal Admin', email: 'admin@portal.test', password: PASSWORD, role: 'admin', adminKey: ADMIN_KEY });
-  const lecturer = await account({ fullName: 'Dr Lecturer', email: 'lecturer@portal.test', password: PASSWORD, role: 'lecturer', adminKey: ADMIN_KEY });
+  const admin = await account({ fullName: 'Engr. Funke Adeleke', email: 'admin@portal.test', password: PASSWORD, role: 'admin', adminKey: ADMIN_KEY });
+  const lecturer = await account({ fullName: 'Dr. Babatunde Adeyemi', email: 'lecturer@portal.test', password: PASSWORD, role: 'lecturer', adminKey: ADMIN_KEY });
 
   console.log('Courses');
   for (const [code, title, unitLoad, semester, prerequisites] of COURSES) {
@@ -86,7 +108,7 @@ async function main() {
   console.log('Students');
   const ids = Array.from({ length: STUDENTS }, (_, i) => String(i + 1).padStart(4, '0'));
   const students = await inBatches(ids, (n) =>
-    account({ fullName: `Student ${n}`, email: `student${n}@portal.test`, password: PASSWORD, matricNumber: `23${n}` })
+    account({ fullName: getGenericStudentName(Number(n)), email: `student${n}@portal.test`, password: PASSWORD, matricNumber: `23${n}` })
   );
 
   // Every student has passed (or failed) the first-semester courses, so

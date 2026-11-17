@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { BACKEND_NAME } from './api';
 import { Icon, navFor } from './components';
+import { normalizeUser } from './names';
 import Login from './pages/Login';
 import StudentPortal from './pages/StudentPortal';
 import StaffPortal from './pages/StaffPortal';
@@ -37,10 +38,12 @@ export default function App() {
     return <Login onLogin={onLogin} />;
   }
 
-  const { user, token } = session;
+  const { user: rawUser, token } = session;
+  const user = normalizeUser(rawUser);
   const nav = navFor(user.role);
   const current = nav.find((n) => n.id === view) || nav[0];
-  const initials = user.fullName.split(' ').map((p) => p[0]).slice(0, 2).join('').toUpperCase();
+  const cleanName = user.fullName.replace(/^(Dr\.|Prof\.|Engr\.|Mr\.|Mrs\.|Ms\.)\s*/i, '');
+  const initials = cleanName.split(/\s+/).map((p) => p[0]).slice(0, 2).join('').toUpperCase();
 
   const logout = () => {
     saveSession(null);

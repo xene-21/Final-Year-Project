@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { api, naira, useApi } from '../api';
 import { Notice, Stat, Status, Table } from '../components';
+import { formatStudentName, getGreetingName } from '../names';
 
 // Lists students for dropdowns and tables. Limit 1000 is the backend maximum per page.
 const useStudents = (token) => useApi('/api/auth/users?role=student&limit=1000', token);
@@ -21,7 +22,7 @@ function Overview({ token, user, role }) {
   return (
     <div className="stack-lg">
       <section className="hero">
-        <h2>Morning, {user.fullName.split(' ')[0]}.</h2>
+        <h2>Welcome back, {getGreetingName(user)}.</h2>
         <p>Upload results, check enrolment numbers and manage the catalogue.</p>
       </section>
       <div className="stats">
@@ -70,7 +71,7 @@ function UploadResult({ token }) {
         <select required value={form.studentId} onChange={set('studentId')}>
           <option value="">Choose a student</option>
           {(students.data || []).map((s) => (
-            <option key={s.id} value={s.id}>{s.fullName} ({s.matricNumber})</option>
+            <option key={s.id} value={s.id}>{formatStudentName(s)} ({s.matricNumber})</option>
           ))}
         </select>
       </label>
@@ -138,7 +139,7 @@ function Students({ token }) {
       <Notice tone="error">{students.error}</Notice>
       <Table
         headers={['Name', 'Email', 'Matric number']}
-        rows={list.slice(0, 200).map((s) => [s.fullName, s.email, s.matricNumber])}
+        rows={list.slice(0, 200).map((s) => [formatStudentName(s), s.email, s.matricNumber])}
         empty="No student accounts yet."
       />
       {list.length > 200 && <p className="empty" style={{ marginTop: 12, border: 0, padding: 0 }}>Showing the first 200 of {list.length}.</p>}
@@ -233,7 +234,7 @@ function Invoices({ token }) {
           Student
           <select required value={form.studentId} onChange={set('studentId')}>
             <option value="">Choose a student</option>
-            {(students.data || []).map((s) => <option key={s.id} value={s.id}>{s.fullName} ({s.matricNumber})</option>)}
+            {(students.data || []).map((s) => <option key={s.id} value={s.id}>{formatStudentName(s)} ({s.matricNumber})</option>)}
           </select>
         </label>
         <label>
