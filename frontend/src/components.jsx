@@ -1,26 +1,26 @@
-// Shared pieces: navigation, icons, status pills, stats, tables and notices.
+// Shared UI pieces: navigation config, icons, status pills, stats, tables and notices.
 
 export const NAV = {
   student: [
     { id: 'dashboard', label: 'Overview', subtitle: 'Your semester at a glance.', icon: 'home' },
-    { id: 'courses', label: 'Course registration', subtitle: 'Browse the catalogue and register for courses.', icon: 'book' },
-    { id: 'registrations', label: 'My courses', subtitle: 'Courses you are registered for.', icon: 'list' },
-    { id: 'results', label: 'Results', subtitle: 'Scores and grades published for you.', icon: 'chart' },
-    { id: 'fees', label: 'Fees and receipts', subtitle: 'Invoices, payments and receipts.', icon: 'wallet' },
+    { id: 'courses', label: 'Register courses', subtitle: 'Browse the catalogue and pick your courses.', icon: 'book' },
+    { id: 'registrations', label: 'My courses', subtitle: "Courses you're registered for this semester.", icon: 'list' },
+    { id: 'results', label: 'Results', subtitle: 'Scores and grades that have been published.', icon: 'chart' },
+    { id: 'fees', label: 'Fees', subtitle: 'Invoices, payments and receipts.', icon: 'wallet' },
   ],
   lecturer: [
     { id: 'dashboard', label: 'Overview', subtitle: 'Your courses and students.', icon: 'home' },
-    { id: 'results', label: 'Upload results', subtitle: 'Record or correct a student’s score.', icon: 'edit' },
-    { id: 'enrolment', label: 'Enrolment', subtitle: 'See who is registered for a course.', icon: 'list' },
+    { id: 'results', label: 'Upload results', subtitle: "Record or update a student's score.", icon: 'edit' },
+    { id: 'enrolment', label: 'Enrolment', subtitle: "Who's registered for each course.", icon: 'list' },
     { id: 'students', label: 'Students', subtitle: 'All student accounts.', icon: 'users' },
   ],
   admin: [
     { id: 'dashboard', label: 'Overview', subtitle: 'The portal at a glance.', icon: 'home' },
-    { id: 'results', label: 'Upload results', subtitle: 'Record or correct a student’s score.', icon: 'edit' },
-    { id: 'enrolment', label: 'Enrolment', subtitle: 'See who is registered for a course.', icon: 'list' },
+    { id: 'results', label: 'Upload results', subtitle: "Record or update a student's score.", icon: 'edit' },
+    { id: 'enrolment', label: 'Enrolment', subtitle: "Who's registered for each course.", icon: 'list' },
     { id: 'students', label: 'Students', subtitle: 'All student accounts.', icon: 'users' },
-    { id: 'create-course', label: 'Create course', subtitle: 'Add a course to the catalogue.', icon: 'plus' },
-    { id: 'invoices', label: 'Invoices', subtitle: 'Issue fee invoices and see payment status.', icon: 'receipt' },
+    { id: 'create-course', label: 'New course', subtitle: 'Add a course to the catalogue.', icon: 'plus' },
+    { id: 'invoices', label: 'Invoices', subtitle: 'Issue invoices and track payments.', icon: 'receipt' },
   ],
 };
 
@@ -42,13 +42,12 @@ const PATHS = {
 
 export function Icon({ name }) {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
       <path d={PATHS[name]} />
     </svg>
   );
 }
 
-// Each status has a word as well as a colour, so it reads without colour.
 const TONES = {
   pending: 'amber',
   processing: 'blue',

@@ -21,8 +21,8 @@ function Overview({ token, user, role }) {
   return (
     <div className="stack-lg">
       <section className="hero">
-        <h2>Welcome, {user.fullName.split(' ')[0]}.</h2>
-        <p>Use the menu to upload results, check enrolment and manage the catalogue.</p>
+        <h2>Morning, {user.fullName.split(' ')[0]}.</h2>
+        <p>Upload results, check enrolment numbers and manage the catalogue.</p>
       </section>
       <div className="stats">
         <Stat label="Student accounts" value={(students.data || []).length} />
@@ -122,7 +122,7 @@ function Enrolment({ token }) {
               <Status key="s" value={r.status} />,
               new Date(r.registeredAt).toLocaleDateString(),
             ])}
-            empty="Nobody has registered for this course yet."
+        empty="Nobody has registered for this course yet."
           />
         </section>
       )}

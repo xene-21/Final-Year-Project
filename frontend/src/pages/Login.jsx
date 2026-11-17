@@ -42,12 +42,11 @@ export default function Login({ onLogin }) {
           <div>
             <strong>Student Portal</strong>
           </div>
+        </div>        <div className="login-side-content">
+          <h2>Everything your semester needs, in one place.</h2>
+          <p>Course registration, results, fees — sign in with the email and password you registered with.</p>
         </div>
-        <div>
-          <h2>Register for courses, check results and pay fees in one place.</h2>
-          <p>Sign in with the email and password from your registration.</p>
-        </div>
-        <p className="side-note">Connected to the {BACKEND_NAME.toLowerCase()} backend at {BACKEND_NAME === 'Monolith' ? 'port 3000' : 'port 8080'}.</p>
+        <p className="side-note">{BACKEND_NAME} backend · {BACKEND_NAME === 'Monolith' ? 'port 3000' : 'port 8080'}</p>
       </aside>
 
       <section className="login-form">
@@ -113,9 +112,9 @@ export default function Login({ onLogin }) {
 
         <div className="test-accounts">
           <p>
-            Test accounts: <code>student0001@portal.test</code> to <code>student0500@portal.test</code>,{' '}
-            <code>admin@portal.test</code> and <code>lecturer@portal.test</code>. Password for all:{' '}
-            <code>Password123</code>.
+            Use <code>student0001@portal.test</code> through <code>student0500@portal.test</code>{' '}
+            to log in as a student, or <code>admin@portal.test</code> / <code>lecturer@portal.test</code> for staff.
+            All accounts use <code>Password123</code>.
           </p>
         </div>
       </section>

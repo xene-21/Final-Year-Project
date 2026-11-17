@@ -27,17 +27,17 @@ function Overview({ token, user, onNavigate }) {
   return (
     <div className="stack-lg">
       <section className="hero">
-        <h2>Welcome back, {firstName}.</h2>
-        <p>Here is where your semester stands.</p>
+        <h2>Hey {firstName} — here's where things stand.</h2>
+        <p style={{ color: 'var(--ink-2)', marginTop: 4 }}>A quick look at your courses, scores and fees this semester.</p>
       </section>
 
       {outstanding > 0 && (
         <div className="banner" role="status">
           <div>
-            <strong>{naira(outstanding)} is outstanding</strong>
-            <p>Pay your invoice to receive a receipt.</p>
+            <strong>{naira(outstanding)} outstanding</strong>
+            <p>You have unpaid fees. Settle them to keep your account in good standing.</p>
           </div>
-          <button onClick={() => onNavigate('fees')}>Go to fees</button>
+          <button onClick={() => onNavigate('fees')}>View fees</button>
         </div>
       )}
 
@@ -61,7 +61,7 @@ function Overview({ token, user, onNavigate }) {
             courseByCode[r.courseCode]?.unitLoad ?? '—',
             <Status key="s" value={r.status} />,
           ])}
-          empty="You have not registered for any courses yet. Browse the catalogue to get started."
+          empty="You haven't registered for any courses yet — head to Course registration to get started."
         />
       </section>
     </div>
@@ -158,7 +158,7 @@ function Results({ token }) {
       <Table
         headers={['Course', 'Score', 'Grade']}
         rows={(data || []).map((r) => [r.courseCode, r.score, <span key="g" className="grade">{r.grade}</span>])}
-        empty="No results have been published for you yet."
+        empty="No results published yet."
       />
     </div>
   );
