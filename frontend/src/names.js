@@ -49,18 +49,16 @@ export function formatStudentName(s) {
 export function getGreetingName(user) {
   if (!user) return '';
   const fullName = (user.fullName || '').trim();
-  if (!fullName) return user.role === 'student' ? 'Student' : 'Staff';
+  if (!fullName) return '';
 
   const parts = fullName.split(/\s+/);
-  const first = parts[0].toLowerCase().replace(/\.$/, '');
-  const titles = ['dr', 'prof', 'engr', 'mr', 'mrs', 'ms'];
+  const titles = ['dr', 'dr.', 'prof', 'prof.', 'engr', 'engr.', 'mr', 'mr.', 'mrs', 'mrs.', 'ms', 'ms.'];
 
-  if (titles.includes(first)) {
-    // Return title + surname (e.g. "Dr. Adeyemi" or "Engr. Adeleke")
-    const surname = parts[parts.length - 1];
-    return `${parts[0]} ${surname}`;
+  // If the first word is a title, return the next word (the actual first name)
+  if (titles.includes(parts[0].toLowerCase())) {
+    return parts[1] || parts[0];
   }
 
-  // Otherwise return first name (e.g. "Chinedu")
+  // Otherwise just the first name
   return parts[0];
 }
